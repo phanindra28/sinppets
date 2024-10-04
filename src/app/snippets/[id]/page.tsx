@@ -6,7 +6,6 @@ import { deleteSnippet } from "@/actions";
 export default async function SnippetShowPage(props: {
   params: { id: string };
 }) {
-  await new Promise((r) => setTimeout(r, 2000));
   const snippet = await db.snippet.findFirst({
     where: { id: +props.params.id },
   });
@@ -31,4 +30,11 @@ export default async function SnippetShowPage(props: {
       </pre>
     </div>
   );
+}
+
+export async function generateStaticParams(){
+  const snippets = await db.snippet.findMany();
+  return snippets.map((snippet) => ({
+    id: snippet.id.toString(),
+  }))
 }

@@ -7,7 +7,7 @@ import { editSnippet } from "@/actions";
 interface SnippetFormProps {
   snippet: Snippet;
 }
-export default function ({ snippet }: SnippetFormProps) {
+export default function SnippetEditForm({ snippet }: SnippetFormProps) {
   const [code, setCode] = useState<string>();
   const editSnippetAction = editSnippet.bind(null, snippet.id, code);
   return (
